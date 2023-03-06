@@ -1,0 +1,44 @@
+.header {
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background-color: transparent;
+	z-index: 5;
+	display: flex;
+	justify-content: center;
+}
+.header__container {
+	width: 80%;
+	height: 84px;
+	display: flex;
+	align-items: center;
+}
+.header__content {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.user-side {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	cursor: pointer;
+	.user-icon {
+		transition: all 0.2s ease-out;
+		&:hover {
+			transform: scale(1.1);
+		}
+	}
+	.logout-icon {
+		width: 30px;
+		height: 30px;
+		cursor: pointer;
+		transition: all 0.2s ease-out;
+		background: url('../../asset/images/header/logout.png') no-repeat center;
+		&:hover {
+			transform: scale(1.1);
+		}
+	}
+}

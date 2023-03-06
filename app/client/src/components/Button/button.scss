@@ -1,0 +1,32 @@
+@import '../../style/variables';
+
+.btn-hover {
+	width: 30%;
+	font-size: 1.2vw;
+	font-weight: 700;
+	color: #f6f8fa;
+	cursor: pointer;
+	text-align: center;
+	border: none;
+	padding: 12px 8px;
+	border: 1px solid rgba(0, 0, 0, 0);
+	background-size: 300% 100%;
+	border-radius: 6px;
+	-o-transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+	transition: all 0.2s ease-out;
+	&:hover {
+		border: 1px solid rgba(0, 0, 0, 0);
+		background-position: 100% 0;
+		-o-transition: all 0.4s ease-in-out;
+		-webkit-transition: all 0.4s ease-in-out;
+		transition: all 0.4s ease-in-out;
+	}
+	&:focus {
+		outline: none;
+	}
+}
+.btn-hover.btn-modal {
+	background-image: linear-gradient(to right, $sm-middle, $sm-blue, $blue, $sm-pink);
+	box-shadow: 1px 4px 12px 0px $sm-middle;
+}

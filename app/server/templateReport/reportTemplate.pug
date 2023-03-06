@@ -1,0 +1,124 @@
+html
+  head
+    title=title
+    style.
+      body {
+        font-family:sans-serif;
+        font-size: 12px;
+        letter-spacing : 1px;
+      }
+      h1 {
+        text-align: center;
+        font-size: 40px;
+        margin-bottom: 20px;
+        margin-top: 10px;
+        font-weight: 400;
+      }
+      td, th {
+        border: 1px solid grey;
+        padding: 2px;
+      }
+      table {
+       width:100%;
+       border-collapse: collapse;
+      }
+      tr {
+        width: 100%;
+      }
+      td {
+        text-align: center;
+      }
+      th {
+        height: 28px;
+        width: 100%;
+        font-size: 16px;
+        background-color: #f3f1f1;
+      }
+      h2 {
+        width: 100%;
+        height: 45px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: auto;
+        margin-top: 33px;
+      }
+      .wrapresult {
+        background-color: #f3f1f1;
+        font-weight: 600;
+      }
+      .resulthead {
+        width: 33%;
+      }
+      .ddd {
+        width: 50%;
+      }
+      .images {
+        width:100%;
+        height: 90px;
+      }
+      img {
+        margin-top: 50px;
+        margin-left: 40px;
+      }
+      .feedback {
+        background-color: #f3f1f1;
+        min-height: 80px;
+        border: 1px solid grey;
+        display: flex;
+        flex-direction: column;
+        padding:30px;
+      }
+      .data {
+        margin: 25px 40px;
+      }
+      .ul {
+        display: flex;
+        flex-direction: column;
+      }
+      li {
+        line-height:15px;
+      }
+  body
+    div.images
+      img(src='data:image/svg+xml;utf8,' + encodeURIComponent(image))
+    h1=title
+    table 
+      tr 
+        th(colspan=4) ASSESSMENT RESULT 
+      tr 
+        td(colspan=2).ddd Assessment 
+        if(finalAssessment >= 60)
+          td(colspan=2).ddd Pass 
+        else 
+          td(colspan=2).ddd Fail 
+      tr 
+        td(colspan=2).ddd Attendance
+        -var attend=(attendance[0]/attendance[1])
+        td(colspan=2).ddd #{attend}% 
+    table
+      tr 
+        th(colspan=3) HOMEWORK RESULT 
+      tr.wrapresult 
+        td.resulthead Trainer
+        td.resulthead Topic
+        td.resulthead Result
+        each item in report
+          tr 
+            td(rowspan=item.subjects.length+1)=item.name+ " " + item.surname
+          each sub in item.subjects 
+            tr 
+              td=sub.name
+              -var condition = ((sub.trainer_reports[0].graduate*100)/sub.max_score)
+              if condition >= 60
+                td Pass
+              else 
+                td Fail
+    h2.
+      ASSESSMENT FEEDBACK
+    .feedback 
+      ul.ul
+        for item in feedback
+          li=item
+    .data=data  
