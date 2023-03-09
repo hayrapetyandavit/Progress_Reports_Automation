@@ -26,6 +26,9 @@ import {
 	createTrainerAction,
 	deleteTrainerByIdAction,
 	getTrainerByCourseAction,
+	createTrainerReportAction,
+	getReportByStudentIdAction,
+	updateStudentReportForTrainerAction,
 } from './trainer/trainerSlice';
 
 import {
@@ -35,6 +38,9 @@ import {
 	getTrainerByCourse,
 	deleteTrainerById,
 	updateTrainer,
+	createTrainerReport,
+	getTrainerReportByStudent,
+	updateTrainerReport,
 } from './trainer/trainerSaga';
 
 //Students
@@ -126,4 +132,7 @@ export default function* watchDataSaga() {
 	yield takeEvery(getReportAction.type, getReport);
 	yield takeEvery(sendReportAction.type, sendReport);
 	yield takeEvery(updateReportByAdminAction.type, updateReportByAdmin);
+	yield takeEvery(createTrainerReportAction.type, createTrainerReport);
+	yield takeEvery(getReportByStudentIdAction.type, getTrainerReportByStudent);
+	yield takeEvery(updateStudentReportForTrainerAction.type, updateTrainerReport);
 }

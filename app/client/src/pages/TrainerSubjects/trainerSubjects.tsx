@@ -21,7 +21,7 @@ const TrainerSubjects: React.FC = () => {
 		return () => {
 			dispatch(subjectReset());
 		};
-	}, []);
+	}, [auth, dispatch, user.id]);
 
 	const subjects = useSelector(subjectsSelector);
 	const loading = useSelector(loadingSelector);

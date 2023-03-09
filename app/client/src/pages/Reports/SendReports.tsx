@@ -97,7 +97,9 @@ const SendReports: React.FC = (props: any) => {
 								return (
 									<div className="area-grp">
 										<textarea name="" id="" cols={30} rows={5}>
-											{item.trainer_reports[0].comment}
+											{item.trainer_reports[0].edited_comment === null
+												? item.trainer_reports[0].comment
+												: item.trainer_reports[0].edited_comment}
 										</textarea>
 										<Button
 											value="Update Feedback"

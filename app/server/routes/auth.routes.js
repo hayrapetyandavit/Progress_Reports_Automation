@@ -28,7 +28,7 @@ module.exports = (app) => {
                 )
                 .matches(/\d/)
                 .withMessage("your password should have at least one number")
-                .matches(/[!@#$%^&*=(),.?":{}|<>]/)
+                .matches(/[!@#$%^&*=(),.|\/?":{}|<>]/)
                 .withMessage(
                     "your password should have at least one sepcial character",
                 )

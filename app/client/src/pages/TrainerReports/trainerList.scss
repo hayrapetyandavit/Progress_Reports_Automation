@@ -67,6 +67,11 @@
 		background-color: transparent;
 	}
 }
+.head-filter__grp.trainerReport {
+	display: flex;
+	margin-bottom: 15px;
+	margin-top: 5px
+}
 .main-users__list {
 	width: 94.5%;
 	height: 95%;
@@ -102,7 +107,7 @@
 	align-items: center;
 	margin: 8px 0px;
 	background-color: $white;
-	padding-left: 12px;
+	padding: 12px;
 	border-radius: 2px;
 	box-shadow: 0px 0px 1px 0px $sm-blue;
 	input {
@@ -206,6 +211,9 @@ hr {
 }
 
 @media (max-width: 991.98px) {
+	.users__content {
+		padding: 2% 0 0 3%;
+	}
 	.head-filter__grp {
 		width: 50%;
 	}
@@ -228,51 +236,13 @@ hr {
 	}
 }
 @media (max-width: 767.98px) {
-	.users__header {
-		width: 100%;
-		justify-content: space-around;
-	}
 	.main-users__list {
-		height: auto;
-	}
-	.items-title__wrapper {
-		.items-title {
-			display: none;
-		}
+		
+		// border: 1px solid red;
 	}
 	.list-item {
-		width: 70%;
-		height: 180px;
+		width: 100%;
+		height: 60px;
 		display: flex;
-		flex-direction: column;
-		align-content: center;
-		.edit-grp {
-			gap: 4px;
-			justify-content: center;
-			margin-bottom: 8px;
-			button {
-				padding: 8px 4px;
-			}
-		}
-		.info-grp {
-			width: 100%;
-			height: 100%;
-			flex-direction: column;
-			justify-content: center;
-			span {
-				width: 60%;
-				display: flex;
-				justify-content: center;
-				font-size: 16px;
-				font-weight: 500;
-			}
-		}
-		border-radius: 8px;
-		box-shadow: 0px 0px 1px 0px rgba(0,0,0,0.1);
-		&:hover {
-		transition: all 0.6s ease-in;
-
-			box-shadow: 10px 12px 14px -1px rgba(0,0,0,0.1);
-		}
 	}
 }

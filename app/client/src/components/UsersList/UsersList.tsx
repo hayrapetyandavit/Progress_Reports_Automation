@@ -51,14 +51,14 @@ const UsersList: React.FC<IProps> = (props) => {
 					</motion.h2>
 					<div className={`users__header ${props.hideElement}`}>
 						<div className="head-filter__grp">
-							<motion.input
+							{/* <motion.input
 								initial={userListInitial}
 								animate={userListAnimate}
 								exit={userListExit}
 								transition={userListTransit_2}
 								type="text"
 								className="users-search"
-							/>
+							/> */}
 							<motion.select
 								initial={userListInitial}
 								animate={userListAnimate}
@@ -117,8 +117,10 @@ const UsersList: React.FC<IProps> = (props) => {
 							<AddItem title={props.title} show={display} setShow={setDisplay} btnType={type} />
 						</div>
 					</div>
+					{props.hideElement && <div className='users__header'></div>}
+					
 					<hr />
-					<div className="user_list_wrap">
+					<div className={`user_list_wrap ${display && "blured"}`}>
 						<div className="main-users__list">
 							<>
 								{!loading && !error ? (

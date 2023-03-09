@@ -96,6 +96,10 @@
 		box-shadow: 10px 10px 5px -5px rgba(80, 80, 150, 0.3);
 	}
 }
+.create-btn.blured {
+	opacity: 0.4;
+	pointer-events: none;
+}
 .area-grp {
 	display: flex;
 	flex-direction: column;

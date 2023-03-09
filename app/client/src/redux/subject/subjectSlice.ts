@@ -45,6 +45,8 @@ const subjectSlice = createSlice({
 		//
 		getSubjectByTrainerIdAction: (state, action) => {},
 		getSubjectByTrainerIdSuccesed: (state, action) => {
+			console.log(action.payload,"action");
+			
 			state.subjects = action.payload;
 		},
 		getSubjectByTrainerIdFailed: (state, action) => {

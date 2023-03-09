@@ -24,6 +24,12 @@ const PopUpButton: React.FC<IProps> = (props) => {
 					<Button value="Update" className="btn-modal" name="update" />
 				</div>
 			);
+		case 'create':
+			return (
+				<div className="input__grp">
+					<Button value="Save" className="btn-modal" name="create" />
+				</div>
+			);
 		default:
 			return <h3>unknown button</h3>;
 	}

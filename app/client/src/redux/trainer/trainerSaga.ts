@@ -1,6 +1,14 @@
 import { put, call } from 'redux-saga/effects';
 import { notify } from '../../utils';
-import { Trainer, TrainerByID, TrainerData } from '../../types/trainerTypes';
+import {
+	DataTrainerReport,
+	getReportType,
+	Trainer,
+	TrainerByID,
+	TrainerData,
+	TrainerReport,
+	UpdateTrainerReport,
+} from '../../types/trainerTypes';
 import {
 	createTrainerService,
 	getTrainerByIdService,
@@ -9,6 +17,9 @@ import {
 	deleteTrainerByIdService,
 	updateTrainerByIdService,
 	getTrainerByCourseService,
+	createTrainerReportService,
+	getTrainerReportByStudentIdService,
+	updateTrainerReportService,
 } from '../../services/trainerService';
 import { AuthData } from '../../types/authTypes';
 import {
@@ -23,6 +34,11 @@ import {
 	deleteTrainerByIdSuccesed,
 	deleteTrainerByIdFailed,
 	getAllTrainersAction,
+	createTrainerReportSuccess,
+	createTrainerReportFailed,
+	getReportByStudentIdSuccess,
+	updateStudentReportForTrainerSuccess,
+	updateStudentReportForTrainerFailed,
 } from './trainerSlice';
 
 export interface ITrainer {
@@ -81,6 +97,7 @@ export function* updateTrainer(data: ITrainer) {
 		const message: Message = yield response.json() as Promise<Message>;
 		yield put(getAllTrainersAction());
 		yield put(updateTrainerByIdSuccesed(message));
+		notify(message.message);
 	} catch (error: any) {
 		yield put(updateTrainerByIdFailed(error.message));
 	}
@@ -113,5 +130,48 @@ export function* createTrainer(data: AuthData) {
 		yield put(createTrainerSuccesed(trainer));
 	} catch (error: any) {
 		yield put(createTrainerFailed(error.message));
+	}
+}
+
+export function* createTrainerReport(data: DataTrainerReport) {
+	try {
+		console.log(data.payload);
+		const response: Response = yield call(createTrainerReportService, data.payload);
+		if (!response.ok) {
+			throw new Error('Failed to create report');
+		}
+		const message: Message = yield response.json() as Promise<Message>;
+		notify(message.message);
+		yield put(createTrainerReportSuccess(message));
+	} catch (error: any) {
+		yield put(createTrainerReportFailed(error.message));
+	}
+}
+export function* updateTrainerReport(data: UpdateTrainerReport) {
+	try {
+		console.log(data.payload);
+		const response: Response = yield call(updateTrainerReportService, data.payload);
+		if (!response.ok) {
+			throw new Error('Failed to update report');
+		}
+		const message: Message = yield response.json() as Promise<Message>;
+		notify(message.message);
+		yield put(updateStudentReportForTrainerSuccess(message));
+	} catch (error: any) {
+		yield put(updateStudentReportForTrainerFailed(error.message));
+	}
+}
+
+export function* getTrainerReportByStudent(data: getReportType) {
+	try {
+		console.log(data.payload);
+		const response: Response = yield call(getTrainerReportByStudentIdService, data.payload);
+		if (!response.ok) {
+			throw new Error('Failed to get report');
+		}
+		const report: TrainerReport[] = yield response.json() as Promise<TrainerReport[]>;
+		yield put(getReportByStudentIdSuccess(report));
+	} catch (error: any) {
+		yield put(getReportByStudentIdSuccess(error.message));
 	}
 }

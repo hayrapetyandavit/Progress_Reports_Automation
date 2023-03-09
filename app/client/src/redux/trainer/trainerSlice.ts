@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { TrainerSliceState } from '../../types/trainerTypes';
+import { getReport } from '../report/reportSaga';
 
 const initialState: TrainerSliceState = {
 	trainers: [],
@@ -7,6 +8,7 @@ const initialState: TrainerSliceState = {
 	message: {},
 	loading: true,
 	error: false,
+	studentReport: [],
 };
 
 const trainerSlice = createSlice({
@@ -58,6 +60,30 @@ const trainerSlice = createSlice({
 			return initialState;
 		},
 		getTrainerByCourseAction: (state, action) => {},
+		createTrainerReportAction: (state, action) => {},
+		createTrainerReportSuccess: (state, action) => {
+			state.message = action.payload;
+		},
+		createTrainerReportFailed: (state, action) => {
+			state.message = action.payload;
+		},
+		getReportByStudentIdAction: (state, action) => {},
+		getReportByStudentIdSuccess: (state, action) => {
+			state.studentReport = action.payload;
+		},
+		getReportByStudentIdFailed: (state, action) => {
+			state.message = action.payload;
+		},
+		studentReportReset: (state) => {
+			state.studentReport = [];
+		},
+		updateStudentReportForTrainerAction: (state, action) => {},
+		updateStudentReportForTrainerFailed: (state, action) => {
+			state.message = action.payload;
+		},
+		updateStudentReportForTrainerSuccess: (state, action) => {
+			state.message = action.payload;
+		},
 	},
 });
 
@@ -79,6 +105,16 @@ export const {
 	deleteTrainerByIdFailed,
 	trainerReset,
 	getTrainerByCourseAction,
+	createTrainerReportAction,
+	createTrainerReportFailed,
+	createTrainerReportSuccess,
+	getReportByStudentIdAction,
+	getReportByStudentIdFailed,
+	getReportByStudentIdSuccess,
+	studentReportReset,
+	updateStudentReportForTrainerAction,
+	updateStudentReportForTrainerFailed,
+	updateStudentReportForTrainerSuccess
 } = trainerSlice.actions;
 
 export default trainerSlice;

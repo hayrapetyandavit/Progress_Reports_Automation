@@ -33,7 +33,7 @@ function* getReport(data: ICourse) {
 			throw new Error('Course create failed');
 		}
 		const report: [TStudent, [Data], [Data]] = yield response.json() as Promise<[TStudent, [Data], [Data]]>;
-		// notify(message);
+		// notify("Report Created successfully");
 		yield put(getReportSuccesed(report));
 	} catch (error: any) {
 		yield put(getReportFailed(error.message));

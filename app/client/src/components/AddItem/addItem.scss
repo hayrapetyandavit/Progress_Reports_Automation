@@ -97,6 +97,9 @@
 .show {
 	display: block;
 }
+.show.trainer {
+	top: 25%;
+}
 .input {
 	position: relative;
 	color: #595d5f;

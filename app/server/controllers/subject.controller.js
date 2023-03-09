@@ -76,11 +76,27 @@ const getSubjectById = async (req, res) => {
 const getSubjectByCourse = async (req, res) => {
   try {
     const id = req.params.id;
-    const subjects = await Subject.findAll({
-      where: {
-        courseId: id,
-      },
+    const staffId = req.userId;
+    const staff = await Staff.findByPk(staffId);
+    let authorities;
+    const roles = await staff.getRoles();
+    roles.forEach((element) => {
+      authorities = element.name.toUpperCase();
     });
+    let options = {
+      courseId: id,
+    }
+    console.log(
+      authorities,
+      "sdfdfsdfsdf////////////////////////////////////////////////",
+    );
+    if(authorities === "USER") {
+        options.staffId = staffId
+    }
+    const subjects = await Subject.findAll({
+      where: options,
+    });
+    console.log(subjects);
     if (!subjects) {
       res.status(404).send({ message: "subjects not found" });
     }
@@ -113,6 +129,7 @@ const getSubjectbyTrainer = async (req, res) => {
   try {
     const staffId = req.userId;
     const courseId = req.params.id;
+    console.log(staffId, courseId, "sdsdsdsds");
 
     const subjects = await Subject.findAll({
       where: {
@@ -123,6 +140,7 @@ const getSubjectbyTrainer = async (req, res) => {
     if (!subjects) {
       res.status(404).send({ message: "subjects not found" });
     }
+    console.log(subjects);
 
     res.status(200).send(subjects);
   } catch (error) {

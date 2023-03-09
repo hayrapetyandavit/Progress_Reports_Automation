@@ -13,10 +13,10 @@ import { getSubjectByTrainerIdAction, subjectReset } from '../redux/subject/subj
 const TrainerLayout: React.FC = () => {
 	const user = useSelector(userSelector);
 	const dispatch = useDispatch();
-	useEffect(() => {
-		dispatch(getCoursesByTrainerIdAction(user.id));
-		dispatch(getSubjectByTrainerIdAction(user.id));
-	}, []);
+	// useEffect(() => {
+	// 	dispatch(getCoursesByTrainerIdAction(user.id));
+	// 	dispatch(getSubjectByTrainerIdAction(user.id));
+	// }, []);
 	if (user.roles !== 'USER') {
 		return (
 			<LayoutWrapper>

@@ -8,5 +8,5 @@ const trainerSelector = createSelector(selectSelf, (state) => state.trainers.tra
 const loadingSelector = createSelector(selectSelf, (state) => state.trainers.loading);
 const errorSelector = createSelector(selectSelf, (state) => state.trainers.error);
 const messageSelector = createSelector(selectSelf, (state) => state.trainers.message);
-
-export { trainersSelector, trainerSelector, loadingSelector, errorSelector, messageSelector };
+const trainerReportSelector = createSelector(selectSelf, (state)=> state.trainers.studentReport)
+export { trainersSelector, trainerSelector, loadingSelector, errorSelector, messageSelector ,trainerReportSelector};

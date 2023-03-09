@@ -38,7 +38,7 @@ import './reports.scss';
 
 export default function Reports() {
 	const { searchParams, setSearchParams } = useQueryParams();
-	const [subjectsSelectedOption, setSubjectsSelectedOption] = useState();
+	const [subjectsSelectedOption, setSubjectsSelectedOption] = useState([]);
 	const [coursesSelectedOption, setCoursesSelectedOption] = useState();
 	const [loading, setLoading] = useState(true);
 
@@ -74,6 +74,8 @@ export default function Reports() {
 	});
 
 	const handleSubjectsChange = (subjectsSelectedOption: any) => {
+		console.log(subjectsSelectedOption);
+		
 		setSubjectsSelectedOption(subjectsSelectedOption);
 		const data = subjectsSelectedOption.reduce(
 			(acc: any, el: any) => {
@@ -235,7 +237,7 @@ export default function Reports() {
 												<div className="edit-grp reports-edit-grp">
 													<Button
 														value="Create report"
-														className=" create-btn"
+														className={` create-btn ${(!subjectsSelectedOption.length) && "blured" }`}
 														title="Create report"
 														dataId={item.id}
 														onClick={(e: React.MouseEvent<HTMLButtonElement>) => {

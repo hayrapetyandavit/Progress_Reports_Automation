@@ -23,13 +23,12 @@ const createTrainerReport = async (req, res) => {
 
 const updateTrainerReport = async (req, res) => {
   try {
-    const { attendance, comment = "", graduate, staffId } = req.body;
+    const { attendance, comment = "", graduate } = req.body;
     const id = req.params.id;
     const reportInfo = {
       attendance,
       comment,
       graduate,
-      staffId,
     };
 
     const report = TrainerReport.update(reportInfo, {
@@ -85,10 +84,26 @@ const getTrainerReport = async (req, res) => {
     res.status(500).send(error);
   }
 };
+const getTrainerReportByStudentId = async (req, res) => {
+  try {
+    const subjectId = req.params.subjectId;
+    const studentId = req.params.studentId;
+    const trainerReport = await TrainerReport.findAll({
+      where: {
+        studentId: studentId,
+        subjectId: subjectId,
+      },
+    });
+    res.status(200).send(trainerReport);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+};
 
 module.exports = {
   getTrainerReport,
   createTrainerReport,
   updateTrainerReport,
   updateTrainerReportByAdmin,
+  getTrainerReportByStudentId,
 };

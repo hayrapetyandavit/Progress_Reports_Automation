@@ -12,6 +12,7 @@ const verifyToken = (req, res, next) => {
                 throw new Error("Access token is expired");
             }
             req.userId = decoded.id;
+            req.roles = decoded.role
             next();
         });
     } catch (error) {

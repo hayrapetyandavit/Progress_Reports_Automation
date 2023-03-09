@@ -69,6 +69,8 @@ function* getSubjectById(data: ISubjectId) {
 
 function* getSubjectByCourse(data: ISubjectId) {
 	try {
+		console.log(data.payload);
+		
 		const response: Response = yield call(getSubjectByCourseService, data.payload);
 		if (!response.ok) {
 			throw new Error('Subjects get failed');
@@ -87,7 +89,10 @@ function* getSubjectsByTrainerId(data: ISubjectId) {
 		if (!response.ok) {
 			throw new Error('Subjects get failed');
 		}
+		
 		const subject: TSubject[] = yield response.json() as Promise<TSubject[]>;
+		console.log(subject);
+
 		yield put(getSubjectByTrainerIdSuccesed(subject));
 	} catch (error: any) {
 		yield put(getSubjectByTrainerIdFailed(error.message));
